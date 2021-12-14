@@ -75,17 +75,21 @@ const allWagesFor = function () {
 }
 
 function findEmployeeByFirstName(empArrays, empName){
+    //let empArrays = [{},{}]
+    //let empName = "Loki"
     //let matchName = empArrays.find(element => element === empName)
-    empArrays.forEach(array =>{
-        if(array.firstName === empName){
-            return array.familyName
-        } else {console.log(empName)}
-    })
+    for(const obj of empArrays){
+        if(obj.firstName === empName){
+            return obj
+        }
+    }
+    return undefined    
 }
 
 function calculatePayroll(multiEmployeeArray){
     let multiPayroll = multiEmployeeArray.reduce((accumulator, record) =>{
-        return accumulator + allWagesFor(record)
+        console.log(accumulator, record)
+        return accumulator + allWagesFor.call(record)
     },0)
     console.log(multiPayroll)
     return multiPayroll
